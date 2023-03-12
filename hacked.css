@@ -1,0 +1,353 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Harry Potter";
+  src: url("//db.onlinewebfonts.com/t/0421d4186d6efbfc5331fe180895e780.woff2") format("woff2");
+}
+html {
+  background-color: rgba(117, 97, 66, 0.7);
+}
+
+h1,
+h3 {
+  text-align: center;
+  margin-block: 2rem;
+  font-family: Harry Potter;
+}
+button {
+  font-family: Harry Potter;
+  border: none;
+}
+
+#search {
+  text-align: center;
+  opacity: 90%;
+}
+#search p {
+  font-family: "Harry Potter";
+}
+
+#filter_buttons,
+#sort_buttons {
+  text-align: center;
+}
+
+#filter_buttons button {
+  padding: 1rem;
+  margin: 2rem 1rem;
+}
+#nameDropDown {
+  padding: 1rem;
+  margin: 2rem 1rem;
+  border: none;
+  background-color: transparent;
+  border-bottom: solid 1px;
+  margin: 0px;
+}
+
+#prefectButton,
+#expelledButton,
+#inquisitorButton {
+  padding: 1rem;
+  margin: 2rem 1rem;
+  background-color: transparent;
+  border: solid 1px;
+}
+
+#nameDropDown:hover {
+  border-bottom: solid 2.5px;
+}
+
+#prefectButton:hover,
+#expelledButton:hover,
+#inquisitorButton:hover {
+  border: solid 3px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#all_students {
+  color: black;
+}
+#all_students:hover {
+  color: white;
+}
+.gryffindor {
+  background-color: #740001;
+  color: white;
+}
+.gryffindor:hover {
+  border: solid #740001;
+  background-color: transparent;
+  color: #740001;
+}
+.slytherin {
+  background-color: #1a472a;
+  color: white;
+}
+.slytherin:hover {
+  border: solid #1a472a;
+  background-color: transparent;
+  color: #1a472a;
+}
+.ravenclaw {
+  background-color: #0e1a40;
+  color: white;
+}
+.ravenclaw:hover {
+  border: solid #0e1a40;
+  background-color: transparent;
+  color: #0e1a40;
+}
+.hufflepuff {
+  background-color: #ecb939;
+  color: white;
+}
+.hufflepuff:hover {
+  border: solid #ecb939;
+  background-color: transparent;
+  color: #ecb939;
+}
+
+#list {
+  margin: auto;
+}
+
+#list td:nth-of-type(2) {
+  width: 18rem;
+  padding-left: 2.5rem;
+  font-size: 23px;
+}
+td {
+  font-size: 20px;
+}
+
+/* ARROW */
+#sort_buttons button.sortby[data-sort-direction="asc"]::after {
+  content: "↓";
+}
+#sort_buttons button.sortby[data-sort-direction="desc"]::after {
+  content: "↑";
+}
+
+/* DROPDOWN */
+#dropDownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+#dropDown {
+  /* display: none; */
+  position: absolute;
+  background-color: rgb(179, 179, 179);
+  min-width: 160px;
+  z-index: 1;
+}
+
+#dropDown p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+#dropDown p:hover {
+  text-decoration: underline;
+}
+
+/* .show {
+  display: block;
+} */
+
+.hide {
+  display: none;
+}
+
+/* POPUP STUDENT */
+
+#popupContainer {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  background-color: #777777;
+  color: black;
+}
+
+#studentInfo {
+  display: flex;
+  width: 700px;
+  height: 300px;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+#buttonsPopup button {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #dbdbdb;
+}
+
+#buttonsPopup {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.moreInfo {
+  display: flex;
+  justify-content: center;
+}
+
+.moreInfo p {
+  padding: 1rem;
+}
+
+/* baggrund til popup */
+.darkBackground {
+  background-color: rgba(0, 0, 0, 0.809);
+}
+
+/* lukknap popup */
+.closebtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2em;
+  height: 2em;
+  z-index: 1;
+  margin: 1em;
+  cursor: pointer;
+}
+
+#studentInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+#image img {
+  display: grid;
+  min-width: 70%;
+  place-items: end;
+}
+
+#image {
+  display: grid;
+  place-items: center end;
+}
+
+.bloodsvg {
+  max-width: 45px;
+}
+
+.studentName {
+  display: grid;
+  place-items: center start;
+  margin-block: 2rem;
+}
+.studentName p,
+.moreInfo p,
+.closebtn,
+.houseNamePop {
+  color: whitesmoke;
+}
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+#student_info {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* DIALOG BOX */
+.modal {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-size: 200%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(42, 35, 24, 0.901);
+}
+.dialog {
+  background: rgb(255, 255, 255);
+  padding: 2rem;
+  width: 300px;
+  position: fixed;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/23618/rip.svg) bottom;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+.closebtn_dialog {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2em;
+  height: 2em;
+  z-index: 1;
+  margin: 1em;
+}
+
+button {
+  background-color: rgb(201, 201, 201);
+}
+#hacking_btn {
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.glow {
+  font-size: 80px;
+  color: #ffffffae;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+/* Nuppet lidt fra w3schools */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00691a, 0 0 40px #9b0000, 0 0 50px #180083, 0 0 60px #c4c100, 0 0 70px #ceff2d;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #2d077d, 0 0 40px #14a11b, 0 0 50px #970000, 0 0 60px #237904, 0 0 70px #6a3eb5, 0 0 80px #be91a8;
+  }
+}
+
+td[data-field="expelled"] {
+  text-align: center;
+}
+td[data-field="expelled"],
+td[data-field="prefect"],
+td[data-field="inquisitor"] {
+  text-decoration: underline;
+  color: whitesmoke;
+}
+td[data-field="expelled"]:hover,
+td[data-field="prefect"]:hover,
+td[data-field="inquisitor"]:hover {
+  color: black;
+  cursor: pointer;
+}

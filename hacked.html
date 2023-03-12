@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hogwarts Student List</title>
+    <link rel="stylesheet" href="hacked.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Hogwarts Student List</h1>
+      <div id="hacking_container">
+        <button id="hacking_btn" class="glow">Hack the system</button>
+      </div>
+      <div id="search">
+        <p>Search Student</p>
+        <input type="search" id="search" placeholder="Type here to search" />
+      </div>
+    </header>
+    <section class="allButtons">
+      <section id="filter_buttons">
+        <button id="all_students" data-action="filter" data-filter="all">ALL STUDENTS</button>
+        <button class="gryffindor" data-action="filter" data-filter="gryffindor">GRYFFINDOR</button>
+        <button class="slytherin" data-action="filter" data-filter="slytherin">SLYTHERIN</button>
+        <button class="hufflepuff" data-action="filter" data-filter="hufflepuff">HUFFLEPUFF</button>
+        <button class="ravenclaw" data-action="filter" data-filter="ravenclaw">RAVENCLAW</button>
+      </section>
+
+      <section id="sort_buttons">
+        <div id="dropDownContainer">
+          <button id="nameDropDown">
+            <span>SORT BY NAME ↓</span>
+          </button>
+          <div id="dropDown" class="hide">
+            <p data-action="sort" data-sort-direction="asc" data-sort="firstName">Firstname</p>
+            <p data-action="sort" data-sort-direction="asc" data-sort="lastName">Lastname</p>
+          </div>
+        </div>
+        <button id="prefectButton" data-sort="prefect">PREFECT STUDENTS</button>
+        <button id="expelledButton" data-sort="expelled">EXPELLED STUDENTS</button>
+        <button id="inquisitorButton" data-sort="inquisitor">INQUISITOR STUDENTS</button>
+      </section>
+    </section>
+
+    <section id="studentList">
+      <h3></h3>
+      <table id="list">
+        <thead>
+          <tr>
+            <th></th>
+            <th>NAME</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>PREFECT</th>
+            <th>EXPELL STUDENTS</th>
+            <th>INQUISITOR</th>
+            <th>BLOOD STATUS</th>
+            <th>HOUSE</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- student template will be copied and inserted here -->
+        </tbody>
+      </table>
+
+      <template id="student">
+        <tr>
+          <td data-field="image"><img src="{{Student.image.src}}" alt="" /></td>
+          <td data-field="fullname"></td>
+          <td data-field="firstname" class="hide"></td>
+          <td data-field="middlename"></td>
+          <td data-field="nickname"></td>
+          <td data-field="lastname"></td>
+          <td data-field="prefect">Prefect</td>
+          <td data-field="expelled"></td>
+          <td data-field="inquisitor"></td>
+          <td data-field="blood"><img class="bloodsvg" src="" alt="" /></td>
+          <td data-field="house"></td>
+        </tr>
+        <button id="student_info">STUDENT INFO</button>
+      </template>
+    </section>
+    <!-- POPUP STUDENT -->
+    <section id="popupContainer">
+      <p class="closebtn">X</p>
+      <h1 class="houseNamePop"></h1>
+      <article id="studentInfo">
+        <div id="image">
+          <img src=" " alt="" />
+        </div>
+        <div class="studentName">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </article>
+      <article>
+        <div class="moreInfo">
+          <p id="prefectText">Prefect:</p>
+          <p id="expelledText">Expelled:</p>
+          <p id="bloodText">Bloodtype:</p>
+          <p id="inquisitorText">Inquisitorial:</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- DIALOG 1 - PREFECT -->
+    <div id="remove_AorB" class="modal hide">
+      <div class="dialog">
+        <h1>Warning:</h1>
+        <button class="closebtn_dialog">X</button>
+        <p>
+          There can not be any more than 2 prefects from each house.
+          <br />
+          Do you wish to remove one of the exisitng prefects?
+        </p>
+        <div class="sideBYside">
+          <button id="remove_a">Remove <span data-field="prefectA">A</span></button>
+          <button id="remove_b">Remove <span data-field="prefectB">B</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIALOG 2 - INQUISITOR  -->
+    <div id="inqWarning" class="modal hide">
+      <div class="dialog">
+        <h1>Warning !</h1>
+        <button class="closebtn_dialog">X</button>
+        <p>Only pure-blooded or students from Slytherin can be a member of the inquisitorial squad.</p>
+      </div>
+    </div>
+
+    <!-- HACKED DIALOG -->
+    <section id="hacking_msg" class="modal hide">
+      <h1 class="dialog"></h1>
+    </section>
+
+    <script src="hacked.js"></script>
+  </body>
+</html>

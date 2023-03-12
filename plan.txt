@@ -1,0 +1,94 @@
+MANGLER I OPGAVEN TO DO.. 
+
+SORTING !! Den er fucked !
+
+HACKING !! 
+
+FILTERING:
+- Filters that only showed those with certain responsibilities
+        - prefect
+        - inquisitor
+        - expelled 
+
+
+Expelling student:
+- husk --> Once expelled, a student cannot return to the original list.
+
+(You must decide what to do when a name occurs in both lists - 
+either respect the tradition of the pure-blood, and ignore the half-blood part, 
+or take the stricter approach and mark any possible half-blood as just that, half-blood)
+
+
+POPUP:
+- tag stilling til knapperne
+
+ABOUT --> i tvivl om hvad den mener
+
+
+
+
+DOCUMENTATION: 
+
+- Wireframe for the visual design 
+    - include all the dialog-boxes and modals!
+
+- An overview of the various components of the application
+
+- A list of features / user stories 
+    (e.g.: sort by first name, sort by last name, etc.)
+
+- A can/can't list of each component or activity, 
+  with a note on whether you know how to do it or not (at the beginning of the design)
+
+- Pseudocode or activity diagrams for algorithms:
+    - Expelling (incl check for not-expelling you)
+    - Prefects
+    - Blood-status (original decision-algorithm)
+    - hackTheSystem function and additional hacking-features
+
+- Complete activity diagram for all the functions, which parameters they receive, and values they return
+- A list of Student-object properties, e.g. firstName, lastName, imageName and so on. Could be a screengrab of the Student object
+
+
+
+
+TO-DO:
+- Tegn blodtyper i illustrator :) 
+- få baggrund til popup til at skifte alt efter house
+- skal der står house i popup student?
+- total count (length array)
+
+- Mellemnavn med bindestreg/hyphen 
+- click event i en function --> smart måde??
+- Hvorfor skirfter tekst sortBy i vores "sort by name" 
+
+
+
+DID: 
+- sortDirection på firstname + lastname
+- tjek op på fullname ud fra sort knappen sort by name
+- Lavet popup på student 
+
+
+
+SHOW:
+- student list 
+- pop-up (include detailed information about each student, including photo and house-crest and colors)
+
+
+FILTER:
+- houses 
+
+
+SORTING:
+- expelled students 
+- blodtype
+- by name --> dropdown
+- prefects 
+
+
+
+SPØRGSMÅL TIL TUTOR:
+- html --> vores th, thred, er de nødvendige???
+- 
+
