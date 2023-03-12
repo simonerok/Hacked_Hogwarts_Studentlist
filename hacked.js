@@ -40,7 +40,7 @@ const Student = {
 };
 
 function start() {
-  console.log("ready");
+  //console.log("ready");
   loadJSON();
   addButtons();
 }
@@ -49,7 +49,7 @@ function start() {
 function addButtons() {
   // sætter click event på filter knapper, så den kan filtrer mellem husene
   document.querySelectorAll("[data-action='filter']").forEach((button) => button.addEventListener("click", selectHouse));
-  console.log("klik virker");
+  /* //console.log("klik virker"); */
   //  sætter click event på filter knapper, så den kan SORTERER
   document.querySelectorAll("[data-action='sort']").forEach((button) => button.addEventListener("click", selectSort));
   // DROPDOWN
@@ -65,7 +65,7 @@ function addButtons() {
 
 // Load json
 async function loadJSON() {
-  console.log("fetcher jsondata");
+  //console.log("fetcher jsondata");
   const studentJSON = await fetch("https://petlatkea.dk/2021/hogwarts/students.json");
   const studentData = await studentJSON.json();
   const bloodJSON = await fetch("https://petlatkea.dk/2021/hogwarts/families.json");
@@ -73,7 +73,7 @@ async function loadJSON() {
   // when loaded, prepare objects
   prepareObjects(studentData, bloodData);
 }
-//console.log("prepare", prepareObjects());
+////console.log("prepare", prepareObjects());
 
 // Creating new array with cleaned Student data
 function prepareObjects(studentData, bloodData) {
@@ -81,7 +81,7 @@ function prepareObjects(studentData, bloodData) {
     const student = Object.create(Student);
     const text = jsonObject.fullname.trim().split(" ");
     const fullName = jsonObject.fullname.trim();
-    // console.log("variabler oprettet");
+    // //console.log("variabler oprettet");
 
     // FIRSTNAME
     // sætter forbogstav til STORT og resten til småt
@@ -149,7 +149,7 @@ function prepareObjects(studentData, bloodData) {
 
     const isHalfBlood = bloodData.half.includes(student.lastName);
     const isPureBlood = bloodData.pure.includes(student.lastName);
-    // console.log("half pur", isHalfBlood, isPureBlood);
+    // //console.log("half pur", isHalfBlood, isPureBlood);
 
     if (isHalfBlood && isPureBlood) {
       student.blood = "H";
@@ -179,7 +179,7 @@ function displayList(students) {
 }
 
 function displayStudent(student) {
-  // console.log(student);
+  // //console.log(student);
   // create clone
   const clone = document.querySelector("template#student").content.cloneNode(true);
   // set clone data
@@ -221,12 +221,12 @@ function displayStudent(student) {
     if (isPure) {
       student.inquisitor = true;
       moveInquisitor();
-      console.log("inq is true");
+      /*   //console.log("inq is true"); */
     } else if (isSlytHouse) {
       student.inquisitor = true;
       moveInquisitor();
     } else {
-      // console.log("nu skal vi lave inquisitor");
+      // //console.log("nu skal vi lave inquisitor");
       tryMakeInquisitor();
     }
     buildList();
@@ -242,7 +242,7 @@ function displayStudent(student) {
 
     /* push gør at den klikkede student bliver fjernet fra listen ud i den nye liste allInquisitorStudents*/
     allInquisitorStudents.push(moveInquisitorStudent);
-    console.log(allInquisitorStudents);
+    /*  //console.log(allInquisitorStudents); */
 
     buildList();
   }
@@ -257,7 +257,7 @@ function displayStudent(student) {
   }
 
   function tryMakeInquisitor() {
-    // console.log("nu kommer der warning);
+    // //console.log("nu kommer der warning);
     document.querySelector("#inqWarning").classList.remove("hide");
     document.querySelector("#inqWarning .closebtn_dialog").addEventListener("click", closeDialog);
   }
@@ -275,7 +275,7 @@ function displayStudent(student) {
     if (student.prefect) {
       student.prefect = false;
     } else {
-      // console.log("nu skal vi lave prefect");
+      // //console.log("nu skal vi lave prefect");
       tryMakePrefect(student);
     }
 
@@ -285,9 +285,9 @@ function displayStudent(student) {
   function tryMakePrefect(selectedPrefect) {
     // filterer på alle studerende der prefects
     const prefects = allStudents.filter((student) => student.prefect);
-    console.log(prefects);
+    /* //console.log(prefects); */
     const others = prefects.filter((student) => student.house === selectedPrefect.house);
-    console.log(others);
+    /* //console.log(others); */
 
     if (others.length > 1) {
       removeOthers(others);
@@ -345,8 +345,6 @@ function displayStudent(student) {
   }
 
   /* EXPELLED */
-  //Must be able to expel individual students, and see a list of expelled students.
-
   if (student.expelled) {
     clone.querySelector("[data-field=expelled]").textContent = "Expelled";
     document.querySelector("#expelledText").textContent = "Expelled: Yes";
@@ -376,7 +374,7 @@ function displayStudent(student) {
 
       /* push gør at den klikkede student bliver fjernet fra listen ud i den nye liste allExpelledStudents*/
       allExpelledStudents.push(moveExpelledStudent);
-      console.log(allExpelledStudents);
+      /* //console.log(allExpelledStudents); */
     }
 
     buildList();
@@ -391,7 +389,7 @@ function displayStudent(student) {
     const movePrefectStudent = newPrefectStudent.shift();
 
     allPrefectStudents.push(movePrefectStudent);
-    console.log(allPrefectStudents);
+    /*   //console.log(allPrefectStudents); */
     buildList();
   }
 
@@ -400,7 +398,7 @@ function displayStudent(student) {
 
   /* POPUP STUDENT */
   function showPopup() {
-    console.log("SHOW POPUP");
+    /* //console.log("SHOW POPUP"); */
     let popup = document.querySelector("#popupContainer");
     popup.style.display = "block";
 
@@ -429,7 +427,7 @@ function displayStudent(student) {
 
     // INQUISITOR TEXT PÅ POPUP
     if (student.inquisitor) {
-      console.log("popup text");
+      /*  //console.log("popup text"); */
       document.querySelector("#inquisitorText").textContent = "Inquisitor: Yes";
     } else {
       document.querySelector("#inquisitorText").textContent = "Inquisitor: No";
@@ -480,10 +478,10 @@ function closePopup() {
 
 //Hacking
 function hackTheSystem() {
-  console.log("haking btn was cliked");
+  //console.log("haking btn was cliked");
   if (isHacked === false) {
     isHacked = true;
-    console.log(isHacked);
+    //console.log(isHacked);
 
     /* dialog box for hacking */
     document.querySelector("#hacking_msg").classList.remove("hide");
@@ -518,7 +516,6 @@ function hackTheSystem() {
 }
 
 // ADD MYSELF
-
 function addMyself() {
   const me = {
     firstName: "Hacker",
@@ -534,11 +531,10 @@ function addMyself() {
   };
   // Tilføjer "me" til studentlist
   allStudents.unshift(me);
-  console.log(allStudents);
+  //console.log(allStudents);
 }
 
 // MESS BLOOD UP
-
 function messBlood() {
   allStudents.forEach((student) => {
     if (student.blood === "P") {
@@ -554,11 +550,10 @@ function messBlood() {
       student.blood = "P";
     }
   });
-  console.log(allStudents);
+  //console.log(allStudents);
 }
 
-// Remove all students from Squad
-
+// Remove all students as inq
 function removeAsInq() {
   allInquisitorStudents.forEach((obj) => {
     obj.inquisitor = false;
@@ -585,7 +580,7 @@ function alertFromHacker() {
 
 // DROPDOWN
 function toggleDropDown(evt) {
-  console.log("klik drop");
+  //console.log("klik drop");
   document.querySelector("#dropDown").classList.toggle("hide");
 }
 
@@ -595,7 +590,7 @@ function selectHouse(event) {
   settings.sortPref = false;
   settings.sortInq = false;
   const filter = event.target.dataset.filter;
-  console.log(`User selected ${filter}`);
+  //console.log(`User selected ${filter}`);
   //   Kalder setFilter(med det selectede filter)
   setFilter(filter);
 }
@@ -608,32 +603,32 @@ function setFilter(filter) {
 
 function filterList(filteredList) {
   if (settings.filterBy === "gryffindor") {
-    console.log("This is gryffindor");
-    // Create a filtered list of only cats
+    //console.log("This is gryffindor");
+    // Create a filtered list on house griffindor
     filteredList = allStudents.filter(isGryf);
     document.querySelector("#expelledButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
     document.querySelector("#prefectButton").classList.add("hide");
   } else if (settings.filterBy === "slytherin") {
-    console.log("This is slytherin");
+    //console.log("This is slytherin");
     document.querySelector("#expelledButton").classList.add("hide");
     document.querySelector("#prefectButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
-    // Create a filtered list of only dogs
+
     filteredList = allStudents.filter(isSlyt);
   } else if (settings.filterBy === "hufflepuff") {
     document.querySelector("#expelledButton").classList.add("hide");
     document.querySelector("#prefectButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
-    console.log("This is hufflepuff");
-    // Create a filtered list of only dogs
+    //console.log("This is hufflepuff");
+
     filteredList = allStudents.filter(isHuff);
   } else if (settings.filterBy === "ravenclaw") {
-    console.log("This is ravenclaw");
+    //console.log("This is ravenclaw");
     document.querySelector("#expelledButton").classList.add("hide");
     document.querySelector("#prefectButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
-    // Create a filtered list of only dogs
+
     filteredList = allStudents.filter(isRave);
   } else if (settings.filterBy === "all") {
     document.querySelector("#expelledButton").classList.remove("hide");
@@ -647,7 +642,7 @@ function filterList(filteredList) {
 function isGryf(student) {
   return student.house === "Gryffindor";
 }
-console.log(`valgt hus ${student}`);
+//console.log(`valgt hus ${student}`);
 
 function isSlyt(student) {
   return student.house === "Slytherin";
@@ -660,8 +655,8 @@ function isRave(student) {
 }
 
 function buildList() {
-  console.log("BUILD LIST");
-  console.log("settings.sortExpel", settings.sortExpel);
+  //console.log("BUILD LIST");
+  //console.log("settings.sortExpel", settings.sortExpel);
   let studentToWorkWith;
   if (settings.sortExpel) {
     studentToWorkWith = allExpelledStudents;
@@ -724,13 +719,13 @@ function inquisitorList() {
   settings.sortInq = true;
   settings.sortExpel = false;
   settings.sortPref = false;
-  console.log("inq button cliked");
+  //console.log("inq button cliked");
   /* laver en ny liste med de inquisitor students*/
   const inqList = filterList(allInquisitorStudents);
-  console.log(inqList);
+  //console.log(inqList);
   const sortInquisitor = sortList(inqList);
   displayList(sortInquisitor);
-  console.log("inquisitor list");
+  //console.log("inquisitor list");
   document.querySelector("h3").textContent = `The list has ${inqList.length} students`;
 }
 
@@ -739,13 +734,13 @@ function expelledList() {
   settings.sortExpel = true;
   settings.sortPref = false;
   settings.sortInq = false;
-  console.log("explled button cliked");
+  //console.log("explled button cliked");
   /* laver en ny liste med de expelled students*/
   const expelList = filterList(allExpelledStudents);
-  console.log(expelList);
+  //console.log(expelList);
   const sortExpelled = sortList(expelList);
   displayList(sortExpelled);
-  console.log("expelled list");
+  //console.log("expelled list");
   document.querySelector("h3").textContent = `The list has ${expelList.length} students`;
 }
 
@@ -753,13 +748,13 @@ function prefectList() {
   settings.sortPref = true;
   settings.sortExpel = false;
   settings.sortInq = false;
-  console.log("prefect button cliked");
-  /* laver en ny liste med de expelled students*/
+  //console.log("prefect button cliked");
+  /* laver en ny liste med de prefect students*/
   const prefList = filterList(allPrefectStudents);
-  console.log(prefList);
+  //console.log(prefList);
   const sortPrefect = sortList(prefList);
   displayList(sortPrefect);
-  console.log("prefect list");
+  //console.log("prefect list");
   document.querySelector("h3").textContent = `The list has ${prefList.length} students`;
 }
 
@@ -768,7 +763,7 @@ function capitalize(str) {
   const capStr = str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
   return capStr;
 }
-// Capitalize function
+// Capitalize function on the whole string
 function capitalizeFull(str) {
   const capStrFull = str.toUpperCase();
   return capStrFull;
@@ -778,11 +773,11 @@ function capitalizeFull(str) {
 function selectSort(event) {
   settings.sortExpel = false;
   settings.prefect = true;
-  console.log("selectSort", event);
+  //console.log("selectSort", event);
   const sortBy = event.target.dataset.sort;
   const sortDir = event.target.dataset.sortDirection;
 
-  // Toggle FIRSTNAME og LASTNAME direction !
+  // Toggle FIRSTNAME og LASTNAME direction
   if (sortDir === "asc") {
     event.target.dataset.sortDirection = "desc";
     document.querySelector("#nameDropDown span").textContent = `${capitalizeFull(sortBy)} ( A - Z )`;
@@ -790,8 +785,8 @@ function selectSort(event) {
     event.target.dataset.sortDirection = "asc";
     document.querySelector("#nameDropDown span").textContent = `${capitalizeFull(sortBy)} ( Z - A )`;
   }
-  console.log(`User selected ${sortBy} - ${sortDir}`);
-  //   Kalder sortList(med det valgte sorting
+  //console.log(`User selected ${sortBy} - ${sortDir}`);
+
   setSort(sortBy, sortDir);
 }
 
@@ -814,7 +809,7 @@ function sortList(sortedList) {
 
   // SORTING BY  NAME med CLOSURE !! nødvendigt for at vi kan bruge sortBy parametret
   function sortByProperty(A, Z) {
-    // console.log(`SortBy is ${sortBy}`);
+    // //console.log(`SortBy is ${sortBy}`);
     if (A[settings.sortBy] < Z[settings.sortBy]) {
       return -1 * direction;
     } else {
