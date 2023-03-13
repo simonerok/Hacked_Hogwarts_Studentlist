@@ -227,6 +227,7 @@ function displayStudent(student) {
       // //console.log("nu skal vi lave inquisitor");
       tryMakeInquisitor();
     }
+
     buildList();
   }
 
@@ -319,6 +320,8 @@ function displayStudent(student) {
     document.querySelector("#remove_AorB .closebtn_dialog").removeEventListener("click", closeDialog);
     document.querySelector("#remove_AorB #remove_a").removeEventListener("click", clickRemoveA);
     document.querySelector("#remove_AorB #remove_b").removeEventListener("click", clickRemoveB);
+    clone.querySelector("[data-field=expelled]").removeEventListener("click", expelStudent);
+    clone.querySelector("[data-field=inquisitor]").removeEventListener("click", makeInquisitor);
   }
 
   function clickRemoveA(studentA, selectedPrefect) {
@@ -375,7 +378,7 @@ function displayStudent(student) {
       allExpelledStudents.push(moveExpelledStudent);
       /* //console.log(allExpelledStudents); */
     }
-
+    closeDialog();
     buildList();
   }
 
