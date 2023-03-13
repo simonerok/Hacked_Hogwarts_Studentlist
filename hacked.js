@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", start);
 const allStudents = [];
 
 let allExpelledStudents = [];
-let allPrefectStudents = [];
+
 let allInquisitorStudents = [];
 
 // variabler
@@ -16,7 +16,6 @@ const settings = {
   sortBy: "house",
   sortDir: "asc",
   sortExpel: false,
-  sortPref: false,
   sortInq: false,
 };
 
@@ -205,7 +204,6 @@ function displayStudent(student) {
 
   /* CLICK EXPELLED SORT*/
   clone.querySelector("[data-field=expelled]").addEventListener("click", expelStudent);
-  clone.querySelector("[data-field=prefect]").addEventListener("click", prefectStudent);
   clone.querySelector("[data-field=inquisitor]").addEventListener("click", makeInquisitor);
 
   /* CLICK STUDENT POPUP */
@@ -272,6 +270,7 @@ function displayStudent(student) {
   }
 
   function makePrefect() {
+    console.log("prefect klikket");
     if (student.prefect) {
       student.prefect = false;
     } else {
@@ -291,10 +290,10 @@ function displayStudent(student) {
 
     if (others.length > 1) {
       removeOthers(others);
+      console.log("nået hertil");
     } else {
       isPrefect(selectedPrefect);
     }
-    isPrefect(selectedPrefect);
 
     function isPrefect(student) {
       student.prefect = true;
@@ -366,30 +365,17 @@ function displayStudent(student) {
       /* shift gør at den klikkede student bliver taget ud af det gamle array allStudents */
       const moveExpelledStudent = newExpelledStudent.shift();
 
-      alertFromHacker();
-      document.querySelector("#hacking_msg").textContent = student.firstName + " was EXPELLED";
-      document.querySelector("#hacking_msg").style.color = "red";
-      document.querySelector("#hacking_msg").style.fontSize = "5rem";
-      document.querySelector("#hacking_msg").style.fontFamily = "Harry Potter";
+      alert();
+      document.querySelector("#expel_msg h1").textContent = student.firstName + " was EXPELLED";
+      document.querySelector("#expel_msg h1").style.color = "red";
+      document.querySelector("#expel_msg h1").style.fontSize = "5rem";
+      document.querySelector("#expel_msg h1").style.fontFamily = "Harry Potter";
 
       /* push gør at den klikkede student bliver fjernet fra listen ud i den nye liste allExpelledStudents*/
       allExpelledStudents.push(moveExpelledStudent);
       /* //console.log(allExpelledStudents); */
     }
 
-    buildList();
-  }
-
-  function prefectStudent() {
-    student.prefect = true;
-
-    const studentID2 = allStudents.indexOf(student);
-    const newPrefectStudent = allStudents.splice(studentID2, 1);
-
-    const movePrefectStudent = newPrefectStudent.shift();
-
-    allPrefectStudents.push(movePrefectStudent);
-    /*   //console.log(allPrefectStudents); */
     buildList();
   }
 
@@ -572,9 +558,18 @@ function removeAsInq() {
 
 function alertFromHacker() {
   document.querySelector("#hacking_msg").classList.remove("hide");
+  console.log("a person was expelled");
 
   setTimeout(function () {
     document.querySelector("#hacking_msg").classList.add("hide");
+  }, 3000);
+}
+
+function alert() {
+  document.querySelector("#expel_msg").classList.remove("hide");
+
+  setTimeout(function () {
+    document.querySelector("#expel_msg").classList.add("hide");
   }, 3000);
 }
 
@@ -587,7 +582,6 @@ function toggleDropDown(evt) {
 // FILTER HOUSE FUNCTIONS
 function selectHouse(event) {
   settings.sortExpel = false;
-  settings.sortPref = false;
   settings.sortInq = false;
   const filter = event.target.dataset.filter;
   //console.log(`User selected ${filter}`);
@@ -608,17 +602,15 @@ function filterList(filteredList) {
     filteredList = allStudents.filter(isGryf);
     document.querySelector("#expelledButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
-    document.querySelector("#prefectButton").classList.add("hide");
   } else if (settings.filterBy === "slytherin") {
     //console.log("This is slytherin");
     document.querySelector("#expelledButton").classList.add("hide");
-    document.querySelector("#prefectButton").classList.add("hide");
+
     document.querySelector("#inquisitorButton").classList.add("hide");
 
     filteredList = allStudents.filter(isSlyt);
   } else if (settings.filterBy === "hufflepuff") {
     document.querySelector("#expelledButton").classList.add("hide");
-    document.querySelector("#prefectButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
     //console.log("This is hufflepuff");
 
@@ -626,13 +618,11 @@ function filterList(filteredList) {
   } else if (settings.filterBy === "ravenclaw") {
     //console.log("This is ravenclaw");
     document.querySelector("#expelledButton").classList.add("hide");
-    document.querySelector("#prefectButton").classList.add("hide");
     document.querySelector("#inquisitorButton").classList.add("hide");
 
     filteredList = allStudents.filter(isRave);
   } else if (settings.filterBy === "all") {
     document.querySelector("#expelledButton").classList.remove("hide");
-    document.querySelector("#prefectButton").classList.remove("hide");
     document.querySelector("#inquisitorButton").classList.remove("hide");
   }
 
@@ -660,8 +650,6 @@ function buildList() {
   let studentToWorkWith;
   if (settings.sortExpel) {
     studentToWorkWith = allExpelledStudents;
-  } else if (settings.sortPref) {
-    studentToWorkWith = allPrefectStudents;
   } else if (settings.sortInq) {
     studentToWorkWith = allInquisitorStudents;
   } else {
@@ -709,8 +697,7 @@ function buildList() {
 
 //Click expelled sorting
 document.querySelector("#expelledButton").addEventListener("click", expelledList);
-//Click prefect sorting
-document.querySelector("#prefectButton").addEventListener("click", prefectList);
+
 //Click inquisitor sorting
 document.querySelector("#inquisitorButton").addEventListener("click", inquisitorList);
 
@@ -718,7 +705,7 @@ document.querySelector("#inquisitorButton").addEventListener("click", inquisitor
 function inquisitorList() {
   settings.sortInq = true;
   settings.sortExpel = false;
-  settings.sortPref = false;
+
   //console.log("inq button cliked");
   /* laver en ny liste med de inquisitor students*/
   const inqList = filterList(allInquisitorStudents);
@@ -732,7 +719,6 @@ function inquisitorList() {
 /*BYG LISTE AF EXPELLED STUDENTS -SORTING*/
 function expelledList() {
   settings.sortExpel = true;
-  settings.sortPref = false;
   settings.sortInq = false;
   //console.log("explled button cliked");
   /* laver en ny liste med de expelled students*/
@@ -742,20 +728,6 @@ function expelledList() {
   displayList(sortExpelled);
   //console.log("expelled list");
   document.querySelector("h3").textContent = `The list has ${expelList.length} students`;
-}
-
-function prefectList() {
-  settings.sortPref = true;
-  settings.sortExpel = false;
-  settings.sortInq = false;
-  //console.log("prefect button cliked");
-  /* laver en ny liste med de prefect students*/
-  const prefList = filterList(allPrefectStudents);
-  //console.log(prefList);
-  const sortPrefect = sortList(prefList);
-  displayList(sortPrefect);
-  //console.log("prefect list");
-  document.querySelector("h3").textContent = `The list has ${prefList.length} students`;
 }
 
 // Capitalize function
